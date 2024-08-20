@@ -7,7 +7,7 @@ from passlib.context import CryptContext
 from jwt.exceptions import InvalidTokenError
 from fastapi import Depends, HTTPException, status
 
-from api.models.user import UserInDB, User
+from api.models.user import UserInDB, User, Role
 from api.models.token import TokenData
 from settings import *
 
@@ -69,4 +69,12 @@ async def get_current_active_user(
 ):
     if current_user.disabled:
         raise HTTPException(status_code=400, detail="Inactive user")
+    return current_user
+
+
+async def get_current_admin_active_user(
+        current_user: Annotated[User, Depends(get_current_active_user)]
+):
+    if current_user.role is not Role.admin:
+         raise HTTPException(status_code=400, detail="Unauthorized User")
     return current_user
