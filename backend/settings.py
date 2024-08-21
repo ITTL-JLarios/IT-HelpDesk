@@ -16,3 +16,13 @@ fake_users_db = {
         "disabled": False,
     }
 }
+
+tickets = [
+    {
+    "ee_name": "johndoe",
+    "email": "test@example.com",
+    "issue": "not play this",
+    "equipment": "CPU",
+    "status": "Open"
+    }
+]
