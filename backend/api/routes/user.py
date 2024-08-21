@@ -1,4 +1,3 @@
-from datetime import datetime, timedelta, timezone
 from typing import Annotated
 
 from fastapi import APIRouter, HTTPException, status, Depends
@@ -26,7 +25,7 @@ async def read_own_items(
 
 
 # Admin Petitions
-@router.post("/register")
+@router.post("/register/")
 async def create_new_user(
     current_user: Annotated[User, Depends(get_current_admin_active_user)],
     new_user: UserInDB
@@ -41,7 +40,7 @@ async def create_new_user(
     # TODO: Save data in DB
     return User(**dict(new_user))
 
-@router.patch("/recovery-password", status_code=202)
+@router.patch("/recovery-password/", status_code=202)
 async def update_user_password(
     current_user: Annotated[User, Depends(get_current_admin_active_user)],
     username: str,
