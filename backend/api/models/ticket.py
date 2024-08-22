@@ -13,7 +13,7 @@ class Status(Enum):
 
 class Event(BaseModel):
     username: str
-    timestamp: datetime
+    timestamp: Union[datetime, None] = datetime.now()
     notes: str
     tag: Union[Status, None] = None
 
