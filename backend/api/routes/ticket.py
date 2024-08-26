@@ -76,7 +76,7 @@ async def add_event(
     return event
 
 @router.patch("/id/")
-async def add_event(
+async def update_event(
         current_user: Annotated[User, Depends(get_current_active_user)],
         id: str,
         note: str,
